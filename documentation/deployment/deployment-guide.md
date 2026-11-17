@@ -16,8 +16,38 @@ Environment variables (see `frontend/.env.example`):
 | ---------------------- | ----------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL used for metadata URLs |
 
-Any Node.js host that supports Next.js 16 works (Vercel, a container, a VM). The hosting
-target has not been chosen yet.
+Any Node.js host that supports Next.js 16 works. The chosen host is **Vercel**.
+
+### Vercel
+
+The repository is an npm-workspaces monorepo, so the Vercel project must point at the
+frontend workspace:
+
+| Setting          | Value                                                      |
+| ---------------- | ---------------------------------------------------------- |
+| Framework preset | Next.js (auto-detected)                                    |
+| Root Directory   | `frontend`                                                 |
+| Install command  | default (`npm install`; runs at the repo root, workspaces) |
+| Build command    | default (`next build`)                                     |
+| Output directory | default (`.next`)                                          |
+| Node.js version  | 24.x (from `engines.node` in `frontend/package.json`)      |
+
+Environment variables: none are required. `NEXT_PUBLIC_SITE_URL` is optional; without it the
+site URL falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL` (see `src/config/site.ts`).
+Set it to the custom domain once one is connected.
+
+Deploy either by importing the GitHub repository in the Vercel dashboard (pushes to `main`
+then deploy to production, other branches get preview URLs), or with the CLI from the repo
+root: `npx vercel link` (choose Root Directory `frontend`), then `npx vercel --prod`.
+
+Notes:
+
+- The Content-Security-Policy only allows this site's own origin, so the Vercel Toolbar
+  (comments on preview deployments) is blocked. Add `https://vercel.live` to the relevant
+  directives in `next.config.ts` if the team wants it.
+- `npm audit` reports a ReDoS advisory in `picomatch`, pulled in only by development tools
+  (Vitest, Vite, ESLint). Production dependencies have no known vulnerabilities
+  (`npm audit --omit=dev`).
 
 ### Security configuration
 

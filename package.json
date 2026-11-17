@@ -2,14 +2,14 @@
   "name": "restora",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "description": "Restora — luxury massage and wellness services platform.",
   "workspaces": [
     "frontend",
     "backend"
   ],
-  "engines": {
-    "node": ">=20.9.0"
-  },
   "scripts": {
     "dev": "npm run dev --workspace=frontend",
     "build": "npm run build --workspaces",
