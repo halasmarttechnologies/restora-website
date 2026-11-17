@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+ * Restora design tokens — the single source of truth for brand values.
+ * Only the approved palette may be added here.
+ */
+:root {
+  --color-background: #f1f0ed;
+  --color-black: #222222;
+  --color-white: #ffffff;
+
+  /*
+   * Brand typeface: Swiss721 BT Medium.
+   * Licensed font files are pending (see documentation/architecture/frontend-architecture.md).
+   * Until they are supplied, the closest metric-compatible system faces are used.
+   */
+  --font-brand: "Swiss721 BT", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@theme inline {
+  --color-brand-background: var(--color-background);
+  --color-brand-black: var(--color-black);
+  --color-brand-white: var(--color-white);
+  --font-sans: var(--font-brand);
+}
+
+@theme {
+  /* `animate-fade-in`: gentle entrance for swapped content (e.g. carousel slides). */
+  --animate-fade-in: fade-in 400ms ease-out;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-brand);
+    font-weight: 500;
+  }
+
+  ::selection {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}

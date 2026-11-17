@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Testing
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files (commit only .env.example)
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS / editor / local AI-assistant settings
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+# Deployment
+.vercel
+*.pem
