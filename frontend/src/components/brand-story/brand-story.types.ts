@@ -1,3 +1,4 @@
+import type { DisclosureItem } from "@/components/disclosure-list";
 import type { CallToAction } from "@/types/call-to-action";
 
 export interface GalleryImage {
@@ -12,11 +13,6 @@ export interface SocialGalleryProps {
   readonly images: readonly GalleryImage[];
 }
 
-export interface ValueItem {
-  readonly title: string;
-  readonly body: string;
-}
-
 export interface ValuesContent {
   /** Visually hidden; labels the row for assistive technology. */
   readonly heading: string;
@@ -24,7 +20,7 @@ export interface ValuesContent {
   readonly statement: string;
   readonly action: CallToAction;
   /** Expandable list at the bottom of the panel. */
-  readonly items: readonly ValueItem[];
+  readonly items: readonly DisclosureItem[];
   readonly imageSrc: string;
 }
 

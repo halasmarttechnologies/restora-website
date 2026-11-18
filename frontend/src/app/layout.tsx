@@ -6,7 +6,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: siteConfig.name,
+  // Pages set a short `title` (e.g. "About"); the template appends the brand name.
+  title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
   description: siteConfig.description,
 };
 

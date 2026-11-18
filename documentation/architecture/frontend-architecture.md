@@ -12,8 +12,11 @@
 frontend/
 ├── public/            fonts/, images/, icons/, assets/
 ├── src/
-│   ├── app/           Routes, root layout, global styles (design tokens)
-│   │   └── (routes)/  Route group reserved for future pages
+│   ├── app/           Root layout (html/body, metadata), global styles (design tokens)
+│   │   └── (site)/    Route group for public pages; does not appear in URLs
+│   │       ├── layout.tsx   Shared frame: announcement bar, navbar, <main>, footer
+│   │       ├── page.tsx     Home (/)
+│   │       └── about/page.tsx   About (/about)
 │   ├── actions/       Server Actions ("use server"), e.g. newsletter sign-up
 │   ├── components/    One folder per component (see below)
 │   ├── config/        Runtime configuration (site metadata, env-derived values)
@@ -33,9 +36,24 @@ frontend/
   component has props (no empty files).
 - Private sub-parts of a component live in the same folder and are not exported from the
   barrel (e.g. `navbar/mobile-menu.tsx`, `hero/hero-media.tsx`).
-- Editable copy and link lists live in `src/constants/` (`home.ts`, `navigation.ts`), not inside
-  components, so content can change without touching markup.
+- Editable copy and link lists live in `src/constants/` (`home.ts`, `about.ts`,
+  `navigation.ts`, …), not inside components, so content can change without touching markup.
 - Components are Server Components unless interactivity requires `"use client"`.
+
+## Pages
+
+Every public page lives in the `app/(site)/` route group and renders **only its own
+sections**: the group's `layout.tsx` supplies the announcement bar, the sticky navbar, the
+`<main>` landmark (with the standard section gap) and the footer. To add a page:
+
+1. Create `components/<page>/` with `<page>.tsx` composing one file per section, plus
+   `<page>.types.ts` and `index.ts` (see `components/about/`).
+2. Put its copy and image paths in `constants/<page>.ts`.
+3. Add `app/(site)/<page>/page.tsx` that exports `metadata` (`title` is short, e.g. "About";
+   the root layout's template appends "| Restora") and renders the page component.
+
+Shared building blocks (`SplitRow`, `PillLink`, `ArrowButton`, `FeaturedServices`) are reused
+across pages instead of copied.
 
 ## Design tokens
 
@@ -178,6 +196,37 @@ the viewport. On smaller screens the gutter shrinks to 12–24px.
 - `PillLink` (shared): outlined pill call-to-action. `tone="light"` (default, white) over
   photos and video; `tone="dark"` (brand black) on light panels. Takes a `CallToAction`
   (`types/call-to-action.ts`) plus an optional `className` for spacing.
+
+## About page (`/about`)
+
+`components/about/about.tsx` composes the sections below (one file each); content and image
+paths come from `ABOUT_CONTENT` in `constants/about.ts`. Images reuse existing site photos.
+
+- `AboutHero` (`<section>` labelled by the page's `<h1>`): wide photo card (4:5 phones, 16:9
+  tablets, 21:9 desktop), heading and dark `PillLink` in the bottom-right corner. The image is
+  the page's largest paint, so it loads eagerly with `fetchPriority="high"` (Next.js 16
+  deprecates `priority`). A top scrim keeps the white navbar legible over the light photo.
+- `FounderNote`: off-white panel, small uppercase label, centred `<blockquote>` inside a
+  `<figure>` with a `<figcaption>` sign-off. Quotation marks come from CSS (`open-quote` /
+  `close-quote`), so the copy stays plain text.
+- Offering row: shared `SplitRow` (photo left) with `OfferingPanel`: lowercase heading, copy,
+  dark `PillLink`, and a divided list of links. The links are derived from
+  `FEATURED_SERVICES`, so they always match the service cards.
+- `FeaturedServices`: the same service cards as the home page.
+- `StatementBanner`: wide photo shown in greyscale (fits the black-and-white palette) under a
+  25% black tint, with one centred statement as the `<h2>`.
+- Philosophy row: shared `SplitRow` (photo left) with `PhilosophyPanel`: lowercase heading,
+  short copy, and the shared `DisclosureList` of principles pinned to the bottom.
+- `Techniques`: off-white panel with a heading, copy and a list of `TechniqueCard`s (square
+  photo, uppercase `<h3>` name, one-line description); 2 columns on phones, 4 on desktop.
+- `Team`: centred introduction and a list of `TeamMemberCard`s (portrait, `<h3>` name, role,
+  bio). `portraitSrc` is optional: until headshots are supplied, the card shows the member's
+  initials (decorative, `aria-hidden`), and the name stays in the heading.
+- `PromiseBanner`: off-white card with a visually hidden `<h2>`, a `<ul>` of short claims
+  separated by CSS dots, a dark `PillLink` and a wide photo.
+
+`DisclosureList` (`components/disclosure-list/`) is shared with the home page's values panel:
+a divided `<ul>` of native `<details>` items, so it needs no JavaScript.
 
 ### Service images
 

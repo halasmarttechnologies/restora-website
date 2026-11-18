@@ -5,8 +5,6 @@ import type { HeroProps } from "@/components/hero";
 import { SITE_NAME } from "@/constants/site";
 
 // Placeholder copy — to be replaced with approved brand copy.
-export const ANNOUNCEMENT_MESSAGE = `The ${SITE_NAME} experience is arriving soon`;
-
 export const HOME_HERO: HeroProps = {
   eyebrow: "Massage & Wellness",
   heading: "Considered treatments for body and mind, delivered with quiet precision.",

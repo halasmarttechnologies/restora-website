@@ -55,8 +55,21 @@ Tests live in each workspace's `tests/` directory, mirroring `src/`.
   invalid addresses.
 - `frontend/tests/config/next-config.test.ts`: Strict Mode on, no `X-Powered-By`, no browser
   source maps, CSP and hardening headers on every route.
-- `frontend/tests/app/page.test.tsx`: announcement rendered, navbar and footer outside `<main>`, hero,
-  featured services, feature banner, editorial rows and brand story inside.
+- `frontend/tests/components/about.test.tsx`: hero `<h1>`, link and decorative photo; founder
+  note as a `<blockquote>` with sign-off; offering panel links and photo; reused service
+  cards; statement banner; philosophy principles as `<details>`; technique cards (name,
+  description, decorative photo); team members (role, bio, portrait or decorative initials);
+  promise claims, link and photo; section order.
+- `frontend/tests/components/disclosure-list.test.tsx`: one list item per entry, each body
+  inside a closed `<details>`.
+- `frontend/tests/config/site.test.ts`: site URL resolution (explicit URL, Vercel domain,
+  localhost).
+- `frontend/tests/app/site-layout.test.tsx`: announcement bar rendered, page content inside
+  `<main>`, navbar and footer outside it.
+- `frontend/tests/app/page.test.tsx`: home hero and every home section inside `<main>`.
+- `frontend/tests/app/about-page.test.tsx`: About content inside `<main>`; page `title` and
+  `description` metadata.
+- `frontend/tests/app/render-page.tsx` (helper): renders a page inside the site layout.
 - `backend/tests/config.test.ts`: defaults, valid values, invalid `NODE_ENV` and `PORT`,
   error shape.
 - `backend/tests/app.test.ts`: composition root builds config.

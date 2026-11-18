@@ -4,6 +4,5 @@ export type {
   GalleryImage,
   MilestoneBannerProps,
   SocialGalleryProps,
-  ValueItem,
   ValuesContent,
 } from "./brand-story.types";
