@@ -1,3 +1,5 @@
+import { SectionHeading } from "@/components/section-heading";
+
 import type { TeamProps } from "./about.types";
 import { TeamMemberCard } from "./team-member-card";
 
@@ -10,12 +12,7 @@ export function Team({ heading, body, members }: TeamProps) {
       aria-labelledby={HEADING_ID}
       className="rounded-xl bg-brand-background px-5 py-14 text-center text-brand-black sm:px-[30px] lg:py-20"
     >
-      <h2
-        id={HEADING_ID}
-        className="text-[28px] leading-tight tracking-[-0.02em] lowercase sm:text-4xl"
-      >
-        {heading}
-      </h2>
+      <SectionHeading id={HEADING_ID}>{heading}</SectionHeading>
       <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-brand-black/70 sm:text-base">
         {body}
       </p>

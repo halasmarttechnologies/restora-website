@@ -12,7 +12,7 @@ export function PillLink({ label, href, tone = "light", className = "" }: PillLi
   return (
     <Link
       href={href}
-      className={`inline-flex h-[34px] items-center rounded-full border-[1.5px] px-6 text-sm font-medium uppercase transition-colors sm:text-[17px] ${TONES[tone]} ${className}`}
+      className={`inline-flex h-[34px] items-center rounded-full border-[1.5px] px-6 text-sm uppercase transition-colors sm:text-[17px] ${TONES[tone]} ${className}`}
     >
       {label}
     </Link>

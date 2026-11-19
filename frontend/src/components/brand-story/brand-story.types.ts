@@ -1,17 +1,6 @@
 import type { DisclosureItem } from "@/components/disclosure-list";
+import type { SocialGalleryProps } from "@/components/social-gallery";
 import type { CallToAction } from "@/types/call-to-action";
-
-export interface GalleryImage {
-  readonly src: string;
-  /** Describes the photo for screen readers. */
-  readonly alt: string;
-}
-
-export interface SocialGalleryProps {
-  readonly heading: string;
-  readonly action: CallToAction;
-  readonly images: readonly GalleryImage[];
-}
 
 export interface ValuesContent {
   /** Visually hidden; labels the row for assistive technology. */

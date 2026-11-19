@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
+/* `short:` styles apply on short screens, mainly phones held in landscape. */
+@custom-variant short (@media (max-height: 500px));
+
 /*
  * Restora design tokens — the single source of truth for brand values.
  * Only the approved palette may be added here.
  */
 :root {
+  /* Light-only design (see `colorScheme` in layout.tsx). */
+  color-scheme: light;
   --color-background: #f1f0ed;
   --color-black: #222222;
   --color-white: #ffffff;
 
-  /*
-   * Brand typeface: Swiss721 BT Medium.
-   * Licensed font files are pending (see documentation/architecture/frontend-architecture.md).
-   * Until they are supplied, the closest metric-compatible system faces are used.
-   */
-  --font-brand: "Swiss721 BT", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Site typeface: the Helvetica family, with Arial and the system sans-serif as fallbacks. */
+  --font-brand: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @theme inline {
@@ -39,7 +40,10 @@
     background-color: var(--color-white);
     color: var(--color-black);
     font-family: var(--font-brand);
-    font-weight: 500;
+    /* Regular weight everywhere; headings inherit it (Tailwind's preflight). */
+    font-weight: 400;
+    /* Keep content clear of the notch and home indicator (zero on devices without them). */
+    padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
   ::selection {

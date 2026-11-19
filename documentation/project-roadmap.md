@@ -10,7 +10,6 @@
 
 ### Outstanding items
 
-- **Swiss721 BT Medium font files** must be supplied (a close system fallback is in use).
 - Brand logo asset (the navbar currently uses a text wordmark).
 - Hero background video and poster frame.
 - Approved copy for the announcement bar, hero and navigation labels.

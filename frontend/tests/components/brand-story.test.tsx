@@ -8,9 +8,10 @@ const content: BrandStoryProps = {
   gallery: {
     heading: "you + test",
     action: { label: "Find us on social", href: "https://example.com/social" },
-    images: [
-      { src: "/images/gallery/one.webp", alt: "First photo" },
-      { src: "/images/gallery/two.webp", alt: "Second photo" },
+    items: [
+      { type: "video", src: "/videos/gallery/one.mp4", alt: "First clip" },
+      { type: "image", src: "/images/gallery/one.webp", alt: "First photo" },
+      { type: "image", src: "/images/gallery/two.webp", alt: "Second photo" },
     ],
   },
   values: {
@@ -57,12 +58,15 @@ describe("BrandStory", () => {
       return screen.getByRole("region", { name: content.gallery.heading });
     }
 
-    it("renders every photo with its description", () => {
+    it("renders every photo and video with its description, in order", () => {
       const region = renderGallery();
 
-      content.gallery.images.forEach(({ alt }) =>
-        expect(within(region).getByRole("img", { name: alt })).toBeInTheDocument(),
-      );
+      const tiles = within(region).getAllByRole("listitem");
+      expect(tiles).toHaveLength(content.gallery.items.length);
+      content.gallery.items.forEach(({ type, alt }, index) => {
+        const media = tiles[index]!.querySelector(type === "video" ? "video" : "img");
+        expect(media).toHaveAccessibleName(alt);
+      });
     });
 
     it("links to the social profile", () => {

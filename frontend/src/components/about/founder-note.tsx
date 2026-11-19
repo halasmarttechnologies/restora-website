@@ -1,3 +1,5 @@
+import { SectionLabel } from "@/components/section-heading";
+
 import type { FounderNoteProps } from "./about.types";
 
 const HEADING_ID = "founder-note-heading";
@@ -9,9 +11,7 @@ export function FounderNote({ heading, quote, signOff }: FounderNoteProps) {
       aria-labelledby={HEADING_ID}
       className="rounded-xl bg-brand-background px-5 py-16 text-center text-brand-black sm:px-[30px] lg:py-24"
     >
-      <h2 id={HEADING_ID} className="text-xs tracking-[0.08em] uppercase">
-        {heading}
-      </h2>
+      <SectionLabel id={HEADING_ID}>{heading}</SectionLabel>
       <figure className="mx-auto mt-6 max-w-3xl">
         <blockquote>
           {/* Quotation marks come from CSS so the copy stays plain text. */}

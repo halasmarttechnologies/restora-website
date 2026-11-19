@@ -1,6 +1,7 @@
 "use server";
 
-import { normalizeEmail, type NewsletterState } from "@/lib/newsletter";
+import { normalizeEmail } from "@/lib/email";
+import type { NewsletterState } from "@/lib/newsletter";
 
 /**
  * Newsletter sign-up (Server Action, used with `useActionState`).

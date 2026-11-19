@@ -3,20 +3,13 @@ import Link from "next/link";
 import { PillLink } from "@/components/pill-link";
 
 import type { OfferingPanelProps } from "./about.types";
+import { PanelIntro } from "./panel-intro";
 
 /** Heading, copy and call to action at the top; a divided list of links at the bottom. */
 export function OfferingPanel({ headingId, heading, body, action, links }: OfferingPanelProps) {
   return (
     <>
-      <h2
-        id={headingId}
-        className="text-[28px] leading-tight tracking-[-0.02em] lowercase sm:text-4xl"
-      >
-        {heading}
-      </h2>
-      <p className="mt-3 max-w-md text-sm leading-relaxed text-brand-black/70 sm:text-base">
-        {body}
-      </p>
+      <PanelIntro headingId={headingId} heading={heading} body={body} />
       <PillLink {...action} tone="dark" className="mt-5 self-start" />
 
       <ul className="mt-auto pt-10">

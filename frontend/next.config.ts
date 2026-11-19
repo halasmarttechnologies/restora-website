@@ -28,6 +28,10 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // Other sites' windows cannot script this one (opened via links or popups)...
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // ...nor embed its images, videos and scripts on their own pages.
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
   {
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
@@ -45,6 +49,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Never publish source maps to browsers in production (explicit; this is the default).
   productionBrowserSourceMaps: false,
+  experimental: {
+    serverActions: {
+      // Room for contact-form images (4 MB, see ATTACHMENT_LIMITS) plus multipart overhead,
+      // without exceeding Vercel's 4.5 MB request limit. The default is 1 MB.
+      bodySizeLimit: "4.5mb",
+    },
+  },
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {

@@ -2,10 +2,10 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { Navbar } from "@/components/navbar";
-import { PRIMARY_NAV_LINKS, SECONDARY_NAV_LINKS } from "@/constants/navigation";
+import { MOBILE_NAV_LINKS } from "@/constants/navigation";
 import { SITE_NAME } from "@/constants/site";
 
-const ALL_NAV_LINKS = [...PRIMARY_NAV_LINKS, ...SECONDARY_NAV_LINKS];
+const ALL_NAV_LINKS = MOBILE_NAV_LINKS;
 
 describe("Navbar", () => {
   it("renders a banner landmark containing the primary navigation", () => {

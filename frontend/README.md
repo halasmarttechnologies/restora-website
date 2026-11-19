@@ -25,4 +25,4 @@ Run from this directory, or from the repository root with `--workspace=frontend`
 - `tests/` — Vitest and React Testing Library suites
 
 See [frontend-architecture.md](../documentation/architecture/frontend-architecture.md) for
-details, including the pending brand font.
+details.

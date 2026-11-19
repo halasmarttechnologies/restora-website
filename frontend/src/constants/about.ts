@@ -53,24 +53,24 @@ export const ABOUT_CONTENT: AboutProps = {
       {
         name: "Warm oils",
         description: "Gently heated plant oils that help muscles soften and skin stay nourished.",
-        imageSrc: "/images/brand-story/gallery/warm-oil.webp",
+        imageSrc: "/images/services/photos/deep-tissue.webp",
       },
       {
         name: "Long strokes",
         description: "Flowing, rhythmic movements that ease tension and calm the nervous system.",
-        imageSrc: "/images/brand-story/gallery/arm-massage.webp",
+        imageSrc: "/images/services/photos/post-recovery.webp",
       },
       {
         name: "Pressure points",
         description:
           "Slow, focused pressure on knots and trigger points to release deep tightness.",
-        imageSrc: "/images/brand-story/gallery/hand-massage.webp",
+        imageSrc: "/images/services/photos/swedish-relaxation.webp",
       },
       {
         name: "Mindful rest",
         description:
           "Unhurried time to breathe and settle, so the benefits last beyond the session.",
-        imageSrc: "/images/brand-story/gallery/back-massage.webp",
+        imageSrc: "/images/banners/signature-ritual.webp",
       },
     ],
   },
@@ -102,6 +102,6 @@ export const ABOUT_CONTENT: AboutProps = {
       "fragrance-free on request",
     ],
     action: { label: "Book now", href: "/book" },
-    imageSrc: "/images/brand-story/gallery/body-care.webp",
+    imageSrc: "/images/brand-story/values.webp",
   },
 };

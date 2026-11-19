@@ -7,6 +7,14 @@ import { HOME_BRAND_STORY, HOME_EDITORIAL, HOME_FEATURE_BANNER, HOME_HERO } from
 import { renderPage } from "./render-page";
 
 describe("Home page", () => {
+  it("opens the you + restora gallery with the men's video and closes it with the women's", () => {
+    const { items } = HOME_BRAND_STORY.gallery;
+
+    expect(items.at(0)).toMatchObject({ type: "video", src: "/videos/gallery/men.mp4" });
+    expect(items.at(-1)).toMatchObject({ type: "video", src: "/videos/gallery/woman.mp4" });
+    expect(items.slice(1, -1).every(({ type }) => type === "image")).toBe(true);
+  });
+
   it("renders the hero inside the main landmark", () => {
     renderPage(<Home />);
 

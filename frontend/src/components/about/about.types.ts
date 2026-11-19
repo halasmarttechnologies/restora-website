@@ -3,6 +3,12 @@ import type { CallToAction } from "@/types/call-to-action";
 import type { NavLink } from "@/types/navigation";
 import type { FeaturedService } from "@/types/service";
 
+export interface PanelIntroProps {
+  readonly headingId: string;
+  readonly heading: string;
+  readonly body: string;
+}
+
 export interface AboutHeroProps {
   /** The page's `<h1>`. */
   readonly heading: string;

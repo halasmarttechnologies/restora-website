@@ -46,5 +46,4 @@ Copy the per-workspace examples before running in a non-default setup:
 ## Status
 
 Phase 01 (foundation, navbar, hero) is complete. See
-[project-roadmap.md](documentation/project-roadmap.md) for outstanding items, including the
-pending Swiss721 BT Medium font files.
+[project-roadmap.md](documentation/project-roadmap.md) for outstanding items.

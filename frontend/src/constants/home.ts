@@ -9,7 +9,7 @@ export const HOME_HERO: HeroProps = {
   eyebrow: "Massage & Wellness",
   heading: "Considered treatments for body and mind, delivered with quiet precision.",
   action: { label: "Discover services", href: "/services" },
-  video: { src: "/videos/hero-loop.mp4" },
+  video: { src: "/videos/hero/hero-loop.mp4" },
 };
 
 export const HOME_FEATURE_BANNER: FeatureBannerProps = {
@@ -19,11 +19,11 @@ export const HOME_FEATURE_BANNER: FeatureBannerProps = {
   imageSrc: "/images/banners/signature-ritual.webp",
 };
 
-/** Photos in `public/images/editorial/` are placeholders until dedicated shots are supplied. */
+/** Photos reuse existing site images until dedicated shots are supplied. */
 export const HOME_EDITORIAL: EditorialProps = {
   carousel: {
     heading: "Treatment add-ons",
-    imageSrc: "/images/editorial/oil-ritual.webp",
+    imageSrc: "/images/services/photos/deep-tissue.webp",
     slides: [
       {
         name: "Hot Stone",
@@ -49,43 +49,59 @@ export const HOME_EDITORIAL: EditorialProps = {
     {
       heading: "the gift of rest",
       body: `Give someone an hour that is entirely their own. ${SITE_NAME} gift cards cover any treatment and arrive beautifully presented, ready to give or to send.`,
-      imageSrc: "/images/editorial/gift-of-rest.webp",
+      imageSrc: "/images/services/photos/swedish-relaxation.webp",
       action: { label: "Buy a gift card", href: "/gift-cards" },
     },
     {
       heading: "your first visit",
       body: "Every first appointment begins with a short consultation, so your therapist can tailor pressure, focus and pace to you. Arrive a little early and leave the rest to us.",
-      imageSrc: "/images/editorial/first-visit.webp",
+      imageSrc: "/images/services/photos/post-recovery.webp",
       action: { label: "Learn more", href: "/about" },
     },
   ],
 };
 
-/** Gallery photos in `public/images/brand-story/gallery/` partly reuse service photos for now. */
+/** Gallery photos reuse existing site images until dedicated shots are supplied. */
 export const HOME_BRAND_STORY: BrandStoryProps = {
   gallery: {
     heading: `you + ${SITE_NAME}`,
     action: { label: "Find us on social", href: "https://www.instagram.com/" },
-    images: [
+    // Order: the men's video first, then the photos, then the women's video.
+    items: [
       {
-        src: "/images/brand-story/gallery/back-massage.webp",
+        type: "video",
+        src: "/videos/gallery/men.mp4",
+        alt: "A man relaxing during a back massage",
+      },
+      {
+        type: "image",
+        src: "/images/banners/signature-ritual.webp",
         alt: "Client relaxing during a back massage",
       },
       {
-        src: "/images/brand-story/gallery/warm-oil.webp",
+        type: "image",
+        src: "/images/services/photos/deep-tissue.webp",
         alt: "Massage oil poured into an open palm",
       },
       {
-        src: "/images/brand-story/gallery/hand-massage.webp",
+        type: "image",
+        src: "/images/services/photos/swedish-relaxation.webp",
         alt: "Therapist massaging a client's hand and wrist",
       },
       {
-        src: "/images/brand-story/gallery/arm-massage.webp",
+        type: "image",
+        src: "/images/services/photos/post-recovery.webp",
         alt: "Therapist massaging a client's forearm",
       },
       {
-        src: "/images/brand-story/gallery/body-care.webp",
+        type: "image",
+        src: "/images/brand-story/values.webp",
         alt: "Body care products beside a rolled towel and flowers",
+      },
+      {
+        type: "video",
+        src: "/videos/gallery/woman.mp4",
+        alt: "A woman relaxing during a back massage",
       },
     ],
   },

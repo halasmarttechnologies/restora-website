@@ -12,7 +12,7 @@ const CAROUSEL_HEADING_ID = "editorial-carousel-heading";
  */
 export function Editorial({ carousel, stories }: EditorialProps) {
   return (
-    <div className="flex flex-col gap-3 sm:gap-5 lg:gap-9">
+    <>
       <SplitRow headingId={CAROUSEL_HEADING_ID} imageSrc={carousel.imageSrc} mediaPosition="start">
         <h2 id={CAROUSEL_HEADING_ID} className="sr-only">
           {carousel.heading}
@@ -33,6 +33,6 @@ export function Editorial({ carousel, stories }: EditorialProps) {
           </SplitRow>
         );
       })}
-    </div>
+    </>
   );
 }

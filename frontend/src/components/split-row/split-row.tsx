@@ -7,7 +7,7 @@ export function SplitRow({ headingId, imageSrc, mediaPosition, children }: Split
   return (
     <section aria-labelledby={headingId} className="grid gap-3 sm:gap-5 lg:grid-cols-2 lg:gap-9">
       <div
-        className={`relative aspect-square overflow-hidden rounded-xl ${mediaPosition === "end" ? "lg:order-last" : ""}`}
+        className={`relative aspect-square overflow-hidden rounded-xl sm:aspect-[3/2] lg:aspect-square ${mediaPosition === "end" ? "lg:order-last" : ""}`}
       >
         <Image
           src={imageSrc}

@@ -64,10 +64,16 @@ Set in `frontend/next.config.ts` and covered by `frontend/tests/config/next-conf
     sub-resources upgraded to HTTPS. Nonces are not used because they force every page to
     render dynamically; `'unsafe-inline'` is therefore allowed for scripts and styles
     (Next.js bootstrap scripts and React `style` props). `'unsafe-eval'` is development-only.
+  - `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Resource-Policy: same-origin`:
+    other sites cannot script this site's windows or embed its images, videos and scripts.
   - `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`,
     `Referrer-Policy: strict-origin-when-cross-origin`, and a `Permissions-Policy` that turns
     off camera, microphone, geolocation, payment, USB and Topics.
   - `Strict-Transport-Security` (2 years, subdomains) in production only.
+- **Server Action uploads:** `experimental.serverActions.bodySizeLimit: "4.5mb"` allows the
+  contact form's images (4 MB) while staying within Vercel's 4.5 MB request limit. Form
+  validation and file checks are described in
+  [frontend-architecture.md](../architecture/frontend-architecture.md#contact-form-componentscontact).
 - **When adding third-party services** (analytics, booking widgets, fonts, embeds), add their
   origins to the matching CSP directive, or the browser will block them.
 - **Secrets:** never commit `.env` files; only `.env.example` files with placeholder values are
@@ -85,5 +91,6 @@ compiles to `backend/dist/` to keep the build pipeline verified.
 - The site is served over HTTPS (required by the HSTS and `upgrade-insecure-requests` headers).
 - The newsletter Server Action is connected to an email provider (`TODO(newsletter)` in
   `frontend/src/actions/newsletter.ts`).
-- Licensed brand font files are present (see
-  [frontend-architecture.md](../architecture/frontend-architecture.md)).
+- The contact Server Action is connected to an email provider, with rate limiting
+  (`TODO(contact)` in `frontend/src/actions/contact.ts`).
+- The Privacy Policy and Terms have been reviewed by a lawyer.

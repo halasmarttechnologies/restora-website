@@ -1,11 +1,19 @@
 import type { ArrowButtonProps } from "./arrow-button.types";
 
-/** Small round outlined button with an arrow, used for carousel and gallery controls. */
+const VARIANTS = {
+  outline:
+    "size-9 border border-brand-black/40 text-brand-black/70 enabled:hover:border-brand-black enabled:hover:text-brand-black",
+  solid:
+    "size-12 bg-brand-white text-brand-black enabled:hover:bg-brand-black enabled:hover:text-brand-white",
+} as const;
+
+/** Round arrow button used for carousel and gallery controls. */
 export function ArrowButton({
   label,
   direction,
   onClick,
   disabled = false,
+  variant = "outline",
   className = "",
 }: ArrowButtonProps) {
   return (
@@ -14,7 +22,7 @@ export function ArrowButton({
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className={`grid size-9 place-items-center rounded-full border border-brand-black/40 text-brand-black/70 transition-[color,border-color,opacity] enabled:hover:border-brand-black enabled:hover:text-brand-black disabled:opacity-30 ${className}`}
+      className={`grid cursor-pointer place-items-center rounded-full transition-[color,background-color,border-color,opacity] disabled:cursor-default disabled:opacity-30 ${VARIANTS[variant]} ${className}`}
     >
       <svg
         viewBox="0 0 16 16"

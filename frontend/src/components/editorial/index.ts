@@ -1,7 +1,2 @@
 export { Editorial } from "./editorial";
-export type {
-  CarouselSlide,
-  EditorialCarouselContent,
-  EditorialProps,
-  EditorialStory,
-} from "./editorial.types";
+export type { EditorialProps } from "./editorial.types";

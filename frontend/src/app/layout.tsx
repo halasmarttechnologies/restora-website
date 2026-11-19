@@ -13,6 +13,11 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
+  // The site is designed light-only; this stops browsers and in-app web views that force a
+  // dark mode (e.g. some Android apps, Samsung Internet) from inverting its colours.
+  colorScheme: "light",
+  // Use the full screen on notched phones; `globals.css` pads the body by the safe areas.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

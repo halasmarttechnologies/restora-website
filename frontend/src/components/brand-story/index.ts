@@ -1,8 +1,2 @@
 export { BrandStory } from "./brand-story";
-export type {
-  BrandStoryProps,
-  GalleryImage,
-  MilestoneBannerProps,
-  SocialGalleryProps,
-  ValuesContent,
-} from "./brand-story.types";
+export type { BrandStoryProps } from "./brand-story.types";

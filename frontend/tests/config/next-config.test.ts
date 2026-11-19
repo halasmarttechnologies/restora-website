@@ -14,6 +14,10 @@ describe("next.config security", () => {
     expect(nextConfig.reactStrictMode).toBe(true);
   });
 
+  it("caps Server Action uploads below Vercel's 4.5 MB request limit", () => {
+    expect(nextConfig.experimental?.serverActions?.bodySizeLimit).toBe("4.5mb");
+  });
+
   it("hides the framework and ships no browser source maps", () => {
     expect(nextConfig.poweredByHeader).toBe(false);
     expect(nextConfig.productionBrowserSourceMaps).toBe(false);
@@ -36,6 +40,8 @@ describe("next.config security", () => {
       "X-Content-Type-Options": "nosniff",
       "X-Frame-Options": "DENY",
       "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Resource-Policy": "same-origin",
     });
     expect(headers["Permissions-Policy"]).toContain("camera=()");
   });
