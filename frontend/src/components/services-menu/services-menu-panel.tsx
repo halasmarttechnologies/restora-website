@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type MouseEvent } from "react";
+import type { MouseEvent } from "react";
 
 import { PillLink } from "@/components/pill-link";
 
@@ -8,6 +8,7 @@ import { ServiceFilters } from "./service-filters";
 import { SERVICES_MENU_IDS, useServicesMenu } from "./services-menu-context";
 import type { ServicesMenuContent } from "./services-menu.types";
 import { ServicesCarousel } from "./services-carousel";
+import { useServiceFilter } from "./use-service-filter";
 
 /**
  * Drop-down panel under the navbar (large screens). It slides open by animating its grid row
@@ -16,12 +17,7 @@ import { ServicesCarousel } from "./services-carousel";
  */
 export function ServicesMenuPanel({ filters, services, action }: ServicesMenuContent) {
   const { open, hasOpened, close } = useServicesMenu();
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const category = filters[activeIndex]?.category;
-  const visibleServices = category
-    ? services.filter((service) => service.category === category)
-    : services;
+  const { activeIndex, setActiveIndex, visibleServices } = useServiceFilter(filters, services);
 
   // Close once any link inside is followed (event delegation keeps the cards simple).
   const closeOnLinkClick = (event: MouseEvent<HTMLDivElement>) => {

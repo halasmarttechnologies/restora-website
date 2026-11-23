@@ -31,8 +31,13 @@ Tests live in each workspace's `tests/` directory, mirroring `src/`.
 ## Current suite (Phase 01)
 
 - `frontend/tests/components/announcement-bar.test.tsx`: message inside a labelled landmark.
-- `frontend/tests/components/navbar.test.tsx`: landmarks, home link, scroll direction (top / hide on down / reveal on up / jitter ignored), every configured link
-  and its href, mobile menu toggle.
+- `frontend/tests/components/navbar.test.tsx`: landmarks, home link, scroll direction (top /
+  hide on down / reveal on up / jitter ignored), every page link; small-screen menu: starts
+  closed and `inert`, opens from `Menu`, lists every service (code, name, link) and "View all
+  services", includes every other page link, closes on Escape (focus returns), on a followed
+  link and on a tap outside.
+- `frontend/tests/app/services-page.test.tsx`: `/services` heading in `<main>` on a light page,
+  metadata, a link to every service page, category filters like the desktop menu.
 - `frontend/tests/components/autoplay-video.test.tsx`: muted / looping / inline; decorative
   vs labelled; lazy (`preload="metadata"`, first-frame `#t=0.1`) vs eager (autoplay); plays
   only once on screen; no autoplay with reduced motion; play / pause button.

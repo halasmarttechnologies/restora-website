@@ -59,6 +59,15 @@ Shared building blocks (`SplitRow`, `PillLink`, `ArrowButton`, `FeaturedServices
 `TextLink`, `PagePanel`, `ContentSections`) are reused across pages
 instead of copied.
 
+### All services (`/services`)
+
+`app/(site)/services/page.tsx` renders `ServicesOverview` (`components/services-overview/`):
+every service as a card with the same category filters and cards as the desktop services
+menu (`ServiceFilters`, `ServiceMenuCard` and the shared `useServiceFilter` hook from
+`components/services-menu/`). One column on phones, two on tablets, three to four on desktop.
+Content: `SERVICES_OVERVIEW` in `constants/services-menu.ts`. Both "View all services" links
+(desktop menu, small-screen menu) open it.
+
 ### Service pages (`/services/<service>`)
 
 Every service has its **own route folder** and its **own content file**; all six share one
@@ -223,8 +232,16 @@ the viewport. On smaller screens the gutter shrinks to 12–24px.
     `ScrollAwareHeader` is the navbar's client shell; it sets `data-scroll` and `data-menu`,
     and all styling stays in Tailwind `group-data-[scroll=…]:` / `group-data-[menu=…]:`
     classes;
-  - below 1024px the link lists are hidden and a `Menu` toggle opens a panel with all links,
-    built on native `<details>`/`<summary>` (no JavaScript). Services is a plain link there.
+  - below 1024px the link lists are hidden and `MobileMenu` (`navbar/mobile-menu.tsx`, Client
+    Component) gives the same content as the desktop navbar: a `Menu` button
+    (`aria-expanded` / `aria-controls`) slides down a full-width panel under the bar (same
+    grid-row animation as the services menu, `inert` while closed). Inside:
+    `MobileServiceList` (`mobile-service-list.tsx`), a `<details>` "Services" that expands to
+    every service (photo, code, name) and "View all services", then every other page link.
+    It closes on Escape (focus returns to the button), a tap outside (`useDismiss`) or a
+    followed link. While open, the nav turns off-white via
+    `has-[[data-mobile-menu=open]]:` classes; the panel scrolls inside itself if taller than
+    the screen.
 - Services menu (`components/services-menu/`, large screens): `Services` in the navbar is a
   button (`aria-expanded` / `aria-controls`) that slides a panel open inside the bar, which
   turns off-white while it is open.
